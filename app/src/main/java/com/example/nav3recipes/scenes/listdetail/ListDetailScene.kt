@@ -96,6 +96,24 @@ class ListDetailScene<T : Any>(
 
     object ListKey : NavMetadataKey<Boolean>
     object DetailKey : NavMetadataKey<Boolean>
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || this::class != other::class) return false
+        other as ListDetailScene<*>
+        return key == other.key &&
+                previousEntries == other.previousEntries &&
+                listEntry == other.listEntry &&
+                detailEntry == other.detailEntry
+
+    }
+
+    override fun hashCode(): Int {
+        return key.hashCode() * 31 +
+                previousEntries.hashCode() * 31 +
+                listEntry.hashCode() * 31 +
+                detailEntry.hashCode() * 31
+    }
 }
 
 /**

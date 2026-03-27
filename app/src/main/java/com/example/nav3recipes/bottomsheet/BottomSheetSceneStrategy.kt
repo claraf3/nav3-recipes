@@ -35,6 +35,25 @@ internal class BottomSheetScene<T : Any>(
             entry.Content()
         }
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || this::class != other::class) return false
+        other as BottomSheetScene<*>
+        return key == other.key &&
+                previousEntries == other.previousEntries &&
+                overlaidEntries == other.overlaidEntries &&
+                entry == other.entry &&
+                modalBottomSheetProperties == other.modalBottomSheetProperties
+    }
+
+    override fun hashCode(): Int {
+        return key.hashCode() * 31 +
+                previousEntries.hashCode() * 31 +
+                overlaidEntries.hashCode() * 31 +
+                entry.hashCode() * 31 +
+                modalBottomSheetProperties.hashCode() * 31
+    }
 }
 
 /**

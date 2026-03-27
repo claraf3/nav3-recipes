@@ -17,7 +17,6 @@ import androidx.navigation3.scene.SceneStrategyScope
 import androidx.window.core.layout.WindowSizeClass
 import androidx.window.core.layout.WindowSizeClass.Companion.WIDTH_DP_MEDIUM_LOWER_BOUND
 
-
 // --- TwoPaneScene ---
 /**
  * A custom [Scene] that displays two [NavEntry]s side-by-side in a 50/50 split.
@@ -51,6 +50,24 @@ class TwoPaneScene<T : Any>(
     }
 
     object TwoPaneKey : NavMetadataKey<Boolean>
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || this::class != other::class) return false
+        other as TwoPaneScene<*>
+        return key == other.key &&
+                previousEntries == other.previousEntries &&
+                firstEntry == other.firstEntry &&
+                secondEntry == other.secondEntry
+
+    }
+
+    override fun hashCode(): Int {
+        return key.hashCode() * 31 +
+                previousEntries.hashCode() * 31 +
+                firstEntry.hashCode() * 31 +
+                secondEntry.hashCode() * 31
+    }
 }
 
 @Composable
